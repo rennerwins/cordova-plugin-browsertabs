@@ -1,19 +1,19 @@
 {
-    "name": "cordova-plugin-browsertabs",
-    "version": "1.0.0",
-    "description": "In-app browser tabs for Android and iOS",
-    "cordova": {
-        "id": "cordova-plugin-browsertab",
-        "platforms": [
-            "android"
-        ]
-    },
-    "keywords": [
-        "sfsafariviewcontroller",
-        "custom-tabs",
-        "browser-tabs",
-        "browser"
-    ],
-    "author": "Qbix, Inc.",
-    "license": "Apache-2.0"
+  "name": "cordova-plugin-browsertabs-saver",
+  "version": "1.0.0",
+  "description": "In-app browser tabs for Android and iOS",
+  "cordova": {
+    "id": "cordova-plugin-browsertab-saver",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "sfsafariviewcontroller",
+    "custom-tabs",
+    "browser-tabs",
+    "browser"
+  ],
+  "author": "Win",
+  "license": "Apache-2.0"
 }

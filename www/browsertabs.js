@@ -14,19 +14,19 @@
 
 var exec = require('cordova/exec');
 
-var isAvailable = function(success, error) {
+var isAvailable = function (success, error) {
   exec(success, error, 'BrowserTab', 'isAvailable', []);
 };
 
-var openUrl = function(url, opt_error) {
-  var doNothing = function() {};
-  var error = (!opt_error) ? doNothing : opt_error;
+var openUrl = function (url, opt_error) {
+  var doNothing = function () {};
+  var error = !opt_error ? doNothing : opt_error;
   exec(doNothing, error, 'BrowserTab', 'openUrl', [url]);
 };
 
-var close = function(opt_error) {
-  var doNothing = function() {};
-  var error = (!opt_error) ? doNothing : opt_error;
+var close = function (opt_error) {
+  var doNothing = function () {};
+  var error = !opt_error ? doNothing : opt_error;
   exec(doNothing, error, 'BrowserTab', 'close', []);
 };
 
@@ -43,15 +43,18 @@ var close = function(opt_error) {
  * @param {Function} error
  */
 exports.openUrl = function (url, options, success, error) {
-   exports.isAvailable(function (result) {
-       if (result) {
-           exports.openUrlInTab(url, options, success, error);
-       } else {
-           exports.openUrlInBrowser(url, success, error);
-       }
-   }, function () {
-       exports.openUrlInBrowser(url, success, error);
-   });
+  exports.isAvailable(
+    function (result) {
+      if (result) {
+        exports.openUrlInTab(url, options, success, error);
+      } else {
+        exports.openUrlInBrowser(url, success, error);
+      }
+    },
+    function () {
+      exports.openUrlInBrowser(url, success, error);
+    }
+  );
 };
 
 /**
@@ -65,19 +68,27 @@ exports.openUrl = function (url, options, success, error) {
  * @param {Function} success
  * @param {Function} error
  */
-exports.openUrlInTab = function(url, options, success, error) {
-    if(options == undefined) { options = {authSession:false, scheme:""} }
-    exec(success, function(args){
-        console.log(args);
-        if(args != undefined && Number.isInteger(args) && args == 1) {
-            //Open successfully;
-            if(options.onOpen != undefined) {
-                options.onOpen();
-            }
-        } else {
-            error(args);
+exports.openUrlInTab = function (url, options, success, error) {
+  if (options == undefined) {
+    options = { authSession: false, scheme: '' };
+  }
+  exec(
+    success,
+    function (args) {
+      console.log(args);
+      if (args != undefined && Number.isInteger(args) && args == 1) {
+        //Open successfully;
+        if (options.onOpen != undefined) {
+          options.onOpen();
         }
-    }, 'BrowserTab', 'openUrl', [url, options]);
+      } else {
+        error(args);
+      }
+    },
+    'BrowserTab',
+    'openUrl',
+    [url, options]
+  );
 };
 
 /**
@@ -86,8 +97,8 @@ exports.openUrlInTab = function(url, options, success, error) {
  * @param {Function} success
  * @param {Function} error
  */
-exports.openUrlInBrowser = function(url, success, error) {
-   exec(success, error, 'BrowserTab', 'openUrlInBrowser', [url]);
+exports.openUrlInBrowser = function (url, success, error) {
+  exec(success, error, 'BrowserTab', 'openUrlInBrowser', [url]);
 };
 
 /**
@@ -95,8 +106,8 @@ exports.openUrlInBrowser = function(url, success, error) {
  * @param {Function} success
  * @param {Function} error
  */
-exports.close = function(success, error) {
-   exec(success, error, 'BrowserTab', 'close', []);
+exports.close = function (success, error) {
+  exec(success, error, 'BrowserTab', 'close', []);
 };
 
 /**
@@ -104,6 +115,7 @@ exports.close = function(success, error) {
  * @param {Function} success
  * @param {Function} error
  */
-exports.isAvailable = function(success, error) {
-   exec(success, error, 'BrowserTab', 'isAvailable', []);
+exports.isAvailable = function (success, error) {
+  console.log('isAvailable');
+  exec(success, error, 'BrowserTab', 'isAvailable', []);
 };
