@@ -12,7 +12,7 @@
     </description>
 
     <js-module name="BrowserTab" src="www/browsertabs.js">
-        <clobbers target="cordova.plugins.browsertabs" />
+        <clobbers target="cordova.plugins.browsersaver" />
     </js-module>
 
     <platform name="android">
